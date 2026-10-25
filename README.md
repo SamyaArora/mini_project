@@ -59,15 +59,32 @@ python -m jupyter nbconvert --to notebook --execute --inplace --ExecutePreproces
 
 Notebook execution can take several minutes because it trains the LSTM.
 
+## Run Inference
+
+`src/predict.py` loads `models/lstm_rul_fd001.keras` and the matching
+`models/scaler_lstm_fd001.pkl`. The scaler uses the final notebook's
+training-only MinMax preprocessing and expects raw sensor values ordered as
+2, 3, 4, 7, 8, 9, 11, 12, 13, 14, 15, 17, 20, and 21.
+
+```python
+from src.predict import predict_rul
+
+rul_cycles = predict_rul(window)
+```
+
+`window` must have shape `(30, 14)`. Run `python -m pytest` to test inference
+input validation and model execution.
+
 ## Project Structure
 - `data/raw/` — downloaded dataset files
 - `notebooks/01_data_exploration.ipynb` — existing exploration notebook
 - `notebooks/02_baseline_lstm.ipynb` — baseline and LSTM experiment
 - `reports/` — metrics, logs, and figures
-- `models/` — model artifacts, if saved
+- `models/` — saved model and scaler artifacts
 
 ## Limitations
 This is an educational experiment using simulated FD001 data, not live aircraft telemetry. Results use one validation split and one recorded LSTM seed. This project is not a certified aircraft safety system.
 
 ## Future Work
-Evaluate more C-MAPSS subsets, test multiple random seeds, save and reuse the trained model and scaler, and explore alternative sequence models.
+Evaluate more C-MAPSS subsets, test multiple random seeds, and explore
+alternative sequence models.

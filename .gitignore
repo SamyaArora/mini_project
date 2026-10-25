@@ -12,12 +12,13 @@ __pycache__/
 .env
 
 # Generated model files
-models/
+models/*
 *.pkl
 *.pt
 *.pth
 *.keras
 *.h5
+!models/scaler_lstm_fd001.pkl
 
 
 # Raw NASA dataset (keep local; do not upload to GitHub)
