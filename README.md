@@ -1,11 +1,73 @@
-# AI-Based Predictive Maintenance: RUL Prediction of Aircraft Engines using LSTM
+# AI-based Predictive Maintenance for Prediction of Simulated Turbofan Engine
 
-Predicts the Remaining Useful Life (RUL) of turbofan engines from multivariate sensor time series, using the NASA C-MAPSS FD001 subset.
+**NASA C-MAPSS FD001 — LSTM-based Remaining Useful Life (RUL) prediction**
+
+## Overview
+This project predicts the Remaining Useful Life (RUL) of simulated turbofan engines from sensor time-series data. It compares an LSTM neural network with a Ridge Regression baseline.
 
 ## Dataset
-- NASA C-MAPSS Turbofan Engine Degradation Simulation (simulated data).
-- Subset: FD001 (100 train / 100 test engines, 1 operating condition, 1 fault mode).
-- Not included in this repo. Download from https://www.kaggle.com/datasets/behrad3d/nasa-cmaps and place the `.txt` files in `data/raw/`.
+- NASA C-MAPSS Turbofan Engine Degradation Simulation Dataset
+- FD001: 100 training engines and 100 test engines
+- One operating condition and one simulated fault mode
 
-## Status
-Work in progress: EDA, preprocessing and Ridge baseline done; LSTM in progress.# Mini Project
+Download the dataset from [Kaggle](https://www.kaggle.com/datasets/behrad3d/nasa-cmaps) and place `train_FD001.txt`, `test_FD001.txt`, and `RUL_FD001.txt` in `data/raw/`. Dataset files are not included in this repository.
+
+## Method
+- Uses 14 sensor features and 30-cycle input windows.
+- Splits training engines into training and validation groups.
+- Fits the scaler on training-split engines only.
+- Caps training RUL targets at 125 cycles.
+- Evaluates using RMSE, MAE, mean signed error, and the NASA scoring function.
+
+## Test Results
+
+| Model | Target | RMSE | MAE | NASA score |
+|---|---|---:|---:|---:|
+| Ridge | Raw RUL | 21.61 | 17.33 | 1087.2 |
+| LSTM | Raw RUL | 14.71 | 10.96 | 357.6 |
+| Ridge | Clipped RUL | 20.41 | 16.32 | 1011.7 |
+| LSTM | Clipped RUL | 13.42 | 9.89 | 322.3 |
+
+These are the recorded results from the current experiment. The LSTM has lower test RMSE and MAE than the Ridge baseline. See `reports/results.md` and `reports/results.csv` for the reported metrics.
+
+## Figures
+- `reports/figures/true_vs_pred_test_raw.png`
+- `reports/figures/lstm_loss_curves.png`
+- `reports/figures/residual_hist_lstm_test_raw.png`
+
+## Setup (Windows PowerShell)
+
+Activate the existing environment:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+Install dependencies if needed:
+
+```powershell
+python -m pip install -r requirements.txt
+```
+
+## Run the Notebook
+
+From the project root:
+
+```powershell
+python -m jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=3600 notebooks/02_baseline_lstm.ipynb
+```
+
+Notebook execution can take several minutes because it trains the LSTM.
+
+## Project Structure
+- `data/raw/` — downloaded dataset files
+- `notebooks/01_data_exploration.ipynb` — existing exploration notebook
+- `notebooks/02_baseline_lstm.ipynb` — baseline and LSTM experiment
+- `reports/` — metrics, logs, and figures
+- `models/` — model artifacts, if saved
+
+## Limitations
+This is an educational experiment using simulated FD001 data, not live aircraft telemetry. Results use one validation split and one recorded LSTM seed. This project is not a certified aircraft safety system.
+
+## Future Work
+Evaluate more C-MAPSS subsets, test multiple random seeds, save and reuse the trained model and scaler, and explore alternative sequence models.

@@ -1,0 +1,57 @@
+Project root: c:\Users\samya\Desktop\mini_project
+train (20631, 28) engines=100
+test  (13096, 26) engines=100
+NaNs train=0 test=0
+14 sensors: ['sensor_2', 'sensor_3', 'sensor_4', 'sensor_7', 'sensor_8', 'sensor_9', 'sensor_11', 'sensor_12', 'sensor_13', 'sensor_14', 'sensor_15', 'sensor_17', 'sensor_20', 'sensor_21']
+=== Window counts and engine split (protocol 1) ===
+Total training rows: 20631
+Expected windows (rows - 100*29): 17731
+Actual windows: 17731 shape (30, 14)
+Assert total windows == 17731: OK
+Assert window shape (30, 14) and no NaNs: OK
+Train engines: 80 | windows: 14241
+Val engines:   20 | windows: 3490
+Assert train+val windows == 17731 and engine sets disjoint: OK
+=== Scaling (protocol 2): fit MinMax on training-split engines only ===
+Regenerated arrays: X_tr (14241, 30, 14) X_va (3490, 30, 14) X_test (100, 30, 14)
+=== Ridge baseline (alpha=1.0, last-cycle 14 sensors) ===
+Ridge validation (target: clipped): RMSE=19.97 MAE=15.84 mean_signed_error=0.40 NASA=23761.0
+Ridge test (target: RAW): RMSE=21.61 MAE=17.33 mean_signed_error=1.97 NASA=1087.2
+Ridge test (target: clipped): RMSE=20.41 MAE=16.32 mean_signed_error=3.04 NASA=1011.7
+Note: earlier Ridge in 01_data_exploration used MinMax fit on all 100 train engines before split; numbers here may differ for that reason.
+=== LSTM baseline ===
+LSTM seed 42 training time: 223.3s epochs run: 59
+LSTM validation (target: clipped): RMSE=11.51 MAE=8.21 mean_signed_error=-0.28 NASA=7284.5
+Run time < 5 min per seed; also training seeds 43 and 44 for test metrics.
+LSTM seed 43 training time: 532.3s
+LSTM seed 44 training time: 304.6s
+LSTM test (target: RAW) rmse: 15.04 +/- 0.32 (seeds [42, 43, 44])
+LSTM test (target: clipped) rmse: 13.89 +/- 0.48 (seeds [42, 43, 44])
+LSTM test (target: RAW) mae: 11.40 +/- 0.38 (seeds [42, 43, 44])
+LSTM test (target: clipped) mae: 10.33 +/- 0.38 (seeds [42, 43, 44])
+LSTM test (target: RAW) mean_signed_error: 2.09 +/- 0.48 (seeds [42, 43, 44])
+LSTM test (target: clipped) mean_signed_error: 3.16 +/- 0.48 (seeds [42, 43, 44])
+LSTM test (target: RAW) nasa: 389.01 +/- 44.82 (seeds [42, 43, 44])
+LSTM test (target: clipped) nasa: 356.85 +/- 50.10 (seeds [42, 43, 44])
+LSTM test (target: RAW) — mean prediction across seeds: RMSE=14.75 MAE=11.22 mean_signed_error=2.09 NASA=363.2
+LSTM test (target: clipped) — mean prediction across seeds: RMSE=13.58 MAE=10.15 mean_signed_error=3.16 NASA=332.1
+=== Saving plots and reports ===
+Wrote c:\Users\samya\Desktop\mini_project\reports\results.csv
+Wrote c:\Users\samya\Desktop\mini_project\reports\results.md
+Done.
+=== LSTM baseline ===
+LSTM seed 42 training time: 273.6s epochs run: 59
+LSTM validation (target: clipped): RMSE=11.51 MAE=8.21 mean_signed_error=-0.28 NASA=7284.5
+Run time < 5 min per seed; also training seeds 43 and 44 for test metrics.
+LSTM seed 43 training time: 233.7s
+LSTM seed 44 training time: 221.4s
+LSTM test (target: RAW) rmse: 15.04 +/- 0.32 (seeds [42, 43, 44])
+LSTM test (target: clipped) rmse: 13.89 +/- 0.48 (seeds [42, 43, 44])
+LSTM test (target: RAW) mae: 11.40 +/- 0.38 (seeds [42, 43, 44])
+LSTM test (target: clipped) mae: 10.33 +/- 0.38 (seeds [42, 43, 44])
+LSTM test (target: RAW) mean_signed_error: 2.09 +/- 0.48 (seeds [42, 43, 44])
+LSTM test (target: clipped) mean_signed_error: 3.16 +/- 0.48 (seeds [42, 43, 44])
+LSTM test (target: RAW) nasa: 389.01 +/- 44.82 (seeds [42, 43, 44])
+LSTM test (target: clipped) nasa: 356.85 +/- 50.10 (seeds [42, 43, 44])
+LSTM test (target: RAW) — mean prediction across seeds: RMSE=14.75 MAE=11.22 mean_signed_error=2.09 NASA=363.2
+LSTM test (target: clipped) — mean prediction across seeds: RMSE=13.58 MAE=10.15 mean_signed_error=3.16 NASA=332.1
