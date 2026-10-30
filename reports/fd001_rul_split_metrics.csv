@@ -1,0 +1,34 @@
+split,model,feature_representation,run_seed,n,rmse,mae,nasa_score
+train,Original 14-sensor Ridge (retrained),14 selected sensors + MinMaxScaler,deterministic,14241,21.996487817566752,17.973855989835343,137335.47780316137
+validation,Original 14-sensor Ridge (retrained),14 selected sensors + MinMaxScaler,deterministic,3490,19.96587810618593,15.836414004875117,23761.019473902008
+test,Original 14-sensor Ridge (retrained),14 selected sensors + MinMaxScaler,deterministic,100,21.607242562435896,17.32679698944092,1087.1634935438249
+train,PCA Ridge,15 non-constant sensors -> StandardScaler -> PCA(10),deterministic,14241,22.019149986047076,17.980592259027407,138766.3406105988
+validation,PCA Ridge,15 non-constant sensors -> StandardScaler -> PCA(10),deterministic,3490,20.002944548825393,15.85418983831105,23884.455921624198
+test,PCA Ridge,15 non-constant sensors -> StandardScaler -> PCA(10),deterministic,100,21.70915689603373,17.444019050598143,1079.8589007131038
+train,Original 14-sensor LSTM,14 selected sensors + MinMaxScaler,42,14241,12.751641248795254,9.079806884916701,41416.718661156694
+validation,Original 14-sensor LSTM,14 selected sensors + MinMaxScaler,42,3490,11.548185036351041,8.111110005235263,7520.027334799179
+test,Original 14-sensor LSTM,14 selected sensors + MinMaxScaler,42,100,14.993409988815898,11.069128561019898,386.3414841007751
+train,Original 14-sensor LSTM,14 selected sensors + MinMaxScaler,43,14241,12.583530508098082,9.017475273290902,40613.254933146534
+validation,Original 14-sensor LSTM,14 selected sensors + MinMaxScaler,43,3490,11.685304706282158,8.437743062908124,7437.184137273852
+test,Original 14-sensor LSTM,14 selected sensors + MinMaxScaler,43,100,14.680766192777988,11.03949712753296,389.53984000349385
+train,Original 14-sensor LSTM,14 selected sensors + MinMaxScaler,44,14241,13.222308291091675,9.487703254120579,45579.49258838315
+validation,Original 14-sensor LSTM,14 selected sensors + MinMaxScaler,44,3490,11.965723764702886,8.581424766360518,8554.85040920586
+test,Original 14-sensor LSTM,14 selected sensors + MinMaxScaler,44,100,14.988765285560095,11.357521739006042,365.1558251705991
+train,PCA SimpleRNN,15 non-constant sensors -> StandardScaler -> PCA(10),42,14241,21.569866487209918,18.08314367951524,185776.65726581856
+validation,PCA SimpleRNN,15 non-constant sensors -> StandardScaler -> PCA(10),42,3490,20.114508870526038,16.86901703236096,27178.70643872852
+test,PCA SimpleRNN,15 non-constant sensors -> StandardScaler -> PCA(10),42,100,20.116517298887146,15.052484035491943,1141.145067214729
+train,PCA SimpleRNN,15 non-constant sensors -> StandardScaler -> PCA(10),43,14241,19.409117996250874,15.234025439991056,206569.24585935206
+validation,PCA SimpleRNN,15 non-constant sensors -> StandardScaler -> PCA(10),43,3490,17.833040648430508,14.079687575966034,29054.55089045982
+test,PCA SimpleRNN,15 non-constant sensors -> StandardScaler -> PCA(10),43,100,19.4738421259665,14.224620599746704,1097.5753021041983
+train,PCA SimpleRNN,15 non-constant sensors -> StandardScaler -> PCA(10),44,14241,18.144616779073527,13.772264309005116,183992.10864699061
+validation,PCA SimpleRNN,15 non-constant sensors -> StandardScaler -> PCA(10),44,3490,16.661783892816022,12.424331754599738,27524.762829366486
+test,PCA SimpleRNN,15 non-constant sensors -> StandardScaler -> PCA(10),44,100,17.80277117175225,12.931654291152954,727.220911493215
+train,PCA LSTM,15 non-constant sensors -> StandardScaler -> PCA(10),42,14241,11.477847274135582,8.897243042071208,33645.21964411345
+validation,PCA LSTM,15 non-constant sensors -> StandardScaler -> PCA(10),42,3490,13.02010231895562,9.734987620023055,11556.241638913933
+test,PCA LSTM,15 non-constant sensors -> StandardScaler -> PCA(10),42,100,14.781389035093948,11.52000892162323,358.55244131681803
+train,PCA LSTM,15 non-constant sensors -> StandardScaler -> PCA(10),43,14241,11.235651891199572,8.379705288957473,33260.92693076189
+validation,PCA LSTM,15 non-constant sensors -> StandardScaler -> PCA(10),43,3490,13.23487975822324,9.85364455766869,11415.355678362206
+test,PCA LSTM,15 non-constant sensors -> StandardScaler -> PCA(10),43,100,15.99694675458085,11.67574520111084,670.7956638258573
+train,PCA LSTM,15 non-constant sensors -> StandardScaler -> PCA(10),44,14241,11.035137444574424,8.148011465026089,33977.36813960247
+validation,PCA LSTM,15 non-constant sensors -> StandardScaler -> PCA(10),44,3490,13.565649513062274,9.71401577135895,13524.75286166693
+test,PCA LSTM,15 non-constant sensors -> StandardScaler -> PCA(10),44,100,15.65170921143705,11.931798677444458,454.32302621471075
