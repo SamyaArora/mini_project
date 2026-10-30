@@ -1,0 +1,4 @@
+model,feature_representation,pca_components,cumulative_explained_variance,window_length,rmse,mae,nasa_score
+Ridge,PCA-transformed 21 sensors (95% variance),10,0.9515938000024741,30,21.70915689603373,17.444019050598143,1079.8589007131038
+SimpleRNN,PCA-transformed 21 sensors (95% variance),10,0.9515938000024741,30,20.116517298887146,15.052484035491943,1141.145067214729
+LSTM,PCA-transformed 21 sensors (95% variance),10,0.9515938000024741,30,15.99694675458085,11.67574520111084,670.7956638258573
